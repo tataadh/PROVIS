@@ -1,0 +1,36 @@
+//class representasi
+class Pedagang {
+  String nama;
+  List<String> menu;
+
+  Pedagang(this.nama, this.menu);
+
+  //menampilkan menu
+  void tampilanMenu(){
+    print ('Menu ${nama}:');
+    for (var item in menu) {
+      print('- $item:');
+    }
+  }
+
+  //metode asyncronus untuk menerima pesananan
+  Future<void> takeOrder (String foodItem) async {
+    print ('menerima pesanan: $foodItem');
+    await Future.delayed(Duration(seconds: 5)); //proses pembuatan makanan
+    print('Pesanan selesai: $foodItem');
+  }
+}
+
+void main() async {
+//objek pedagang
+var pedagang = Pedagang('kafe', ['Vanilla Latte', 'Butterfly Pea Tea', 'Pancake', 'French Fries With Sausages']);
+
+//menampilkan menu
+pedagang.tampilanMenu();
+
+//memesan secara asyncronus
+await pedagang.takeOrder('Vanilla Latte');
+await pedagang.takeOrder('Pancake');
+
+print ('Semua Pesanan Telah Selesai.');
+}
